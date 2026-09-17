@@ -3,87 +3,116 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="郝浩的个人主页 — 计算机科学与技术 / 课程作业 Personal Web" />
-  <title>郝浩 | Personal Website</title>
+  <meta name="description" content="倪永昊的个人主页 — 上海杉达学院 计算机科学与技术" />
+  <meta name="author" content="Ni Yonghao" />
+  <meta name="theme-color" content="#f4f9ff" />
+  <title>倪永昊 · Ni Yonghao</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="倪永昊 · Personal Website" />
+  <meta property="og:description" content="上海杉达学院 计算机科学与技术 · 个人主页" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/img/avatar.jpg" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
 </head>
 <body>
-  <!-- ===== 导航栏 ===== -->
+  <!-- 背景交互画布：点线海浪 -->
+  <canvas id="wave" aria-hidden="true"></canvas>
+  <div class="bg-glow" aria-hidden="true"></div>
+
+  <!-- ===== 导航 ===== -->
   <header class="navbar" id="navbar">
     <div class="container nav-inner">
-      <a href="#home" class="logo">Hao<span>.dev</span></a>
+      <a href="#home" class="logo">
+        <span class="logo-mark"></span>Ni <span class="logo-dot">Yonghao</span>
+      </a>
       <nav class="nav-links" id="navLinks">
         <a href="#home" class="active">首页</a>
         <a href="#about">关于</a>
         <a href="#skills">技能</a>
         <a href="#projects">项目</a>
+        <a href="#interests">兴趣</a>
         <a href="#contact">联系</a>
       </nav>
-      <button class="nav-toggle" id="navToggle" aria-label="菜单">
+      <button class="nav-toggle" id="navToggle" aria-label="菜单" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
   </header>
 
-  <!-- ===== 首页/英雄区 ===== -->
+  <!-- ===== 首页 ===== -->
   <section class="hero" id="home">
     <div class="container hero-inner">
-      <div class="hero-text">
-        <p class="hero-hello">👋 你好，我是</p>
-        <h1 class="hero-name">郝浩 <span class="gradient-text">Hao Hao</span></h1>
-        <p class="hero-role"><span id="typed"></span><span class="cursor">|</span></p>
+      <div class="hero-text reveal">
+        <p class="eyebrow">Hello, I'm</p>
+        <h1 class="hero-name">倪永昊</h1>
+        <p class="hero-latin">NI YONGHAO</p>
+        <p class="hero-role"><span id="typed"></span><span class="cursor"></span></p>
         <p class="hero-desc">
-          热爱编程与算法，专注于 Web 开发与数据处理。
-          这是我的个人主页 —— 用于展示我的技能、项目与学习历程。
+          上海杉达学院 · 计算机科学与技术 · 大二。
+          对一切能提升生产力的工具保持好奇，正在用代码把想法一点点变成现实。
         </p>
         <div class="hero-btns">
-          <a href="#projects" class="btn btn-primary">查看项目</a>
+          <a href="#projects" class="btn btn-primary">看看我的项目</a>
           <a href="#contact" class="btn btn-ghost">联系我</a>
         </div>
-        <div class="hero-socials">
-          <a href="https://github.com/sweethaohao" target="_blank" rel="noopener" title="GitHub">GitHub</a>
-          <a href="mailto:example@example.com" title="Email">Email</a>
+        <div class="hero-meta">
+          <a href="https://github.com/sweethaohao" target="_blank" rel="noopener">GitHub</a>
+          <span class="dot-sep"></span>
+          <a href="mailto:awslyouxiang@163.com">awslyouxiang@163.com</a>
+          <span class="dot-sep"></span>
+          <span>上海</span>
         </div>
       </div>
-      <div class="hero-card">
-        <div class="avatar">郝</div>
-        <h3>郝浩</h3>
-        <p class="muted">计算机科学与技术</p>
-        <ul class="hero-stats">
-          <li><strong>3+</strong><span>项目</span></li>
-          <li><strong>5+</strong><span>技术栈</span></li>
-          <li><strong>∞</strong><span>好奇心</span></li>
-        </ul>
+      <div class="hero-photo reveal">
+        <div class="photo-frame">
+          <img src="assets/img/avatar.jpg" alt="倪永昊的照片" loading="eager" />
+        </div>
+        <div class="photo-tag">
+          <strong>Ni Yonghao</strong>
+          <span>CS Undergrad</span>
+        </div>
       </div>
     </div>
-    <div class="scroll-hint">↓ 向下滚动</div>
+    <a href="#about" class="scroll-hint" aria-label="向下滚动">
+      <span class="mouse"></span>
+      <span class="hint-text">Scroll</span>
+    </a>
   </section>
 
   <!-- ===== 关于 ===== -->
   <section class="section" id="about">
     <div class="container">
-      <h2 class="section-title"><span>01.</span> 关于我</h2>
+      <h2 class="section-title reveal"><span class="num">01</span> 关于我</h2>
       <div class="about-grid">
-        <div class="about-text">
+        <div class="about-text reveal">
           <p>
-            我是一名计算机相关专业的学生，热爱用代码解决问题。从大一开始接触编程，
-            如今已熟悉前端开发、数据结构与算法、Python 数据处理等方向。
+            我是<strong>倪永昊</strong>，上海杉达学院计算机科学与技术专业大二学生。
+            目前已经掌握了 <strong>C 语言</strong> 和 <strong>Python</strong> 的基础，
+            正在持续深入学习编程与计算机相关知识。
           </p>
           <p>
-            我相信最好的学习方式是<strong>动手做项目</strong>。除了课程作业，我还在课余时间
-            参与开源、搭建个人项目，通过实践不断打磨自己。
+            我对一切<strong>与生产力有关的工具</strong>都充满兴趣 —— Photoshop、Premiere、
+            Blender、CAD、单片机……虽然很多还只是「觉得很厉害，想去学」的阶段，
+            但我相信把好奇心变成技能，只是时间问题。
           </p>
-          <p>这个网站本身就是一个练习 —— 用纯 HTML / CSS / JavaScript 手工搭建，无任何框架。</p>
+          <p>
+            这个网站本身也是我的一次练习：用<strong>纯 HTML / CSS / JavaScript</strong> 手工搭建，
+            没有使用任何前端框架，背景的几何海浪完全由代码实时绘制。
+          </p>
+          <div class="about-chips">
+            <span>🎓 计算机科学与技术</span>
+            <span>📅 大二</span>
+            <span>📍 上海</span>
+          </div>
         </div>
-        <div class="about-facts">
-          <div class="fact"><span>📍</span><div><strong>所在地</strong><p>中国 · 上海</p></div></div>
-          <div class="fact"><span>🎓</span><div><strong>专业</strong><p>计算机科学与技术</p></div></div>
-          <div class="fact"><span>💡</span><div><strong>方向</strong><p>Web 开发 / 数据科学</p></div></div>
-          <div class="fact"><span>🌱</span><div><strong>正在学</strong><p>算法 · 云原生</p></div></div>
+        <div class="about-photo reveal">
+          <img src="assets/img/about.jpg" alt="生活照" loading="lazy" />
         </div>
       </div>
     </div>
@@ -92,28 +121,34 @@
   <!-- ===== 技能 ===== -->
   <section class="section alt" id="skills">
     <div class="container">
-      <h2 class="section-title"><span>02.</span> 技能栈</h2>
+      <h2 class="section-title reveal"><span class="num">02</span> 技能栈</h2>
       <div class="skills-grid">
-        <article class="skill-card">
-          <h3>🌐 前端</h3>
+        <article class="skill-card reveal">
+          <div class="skill-icon">⌨️</div>
+          <h3>编程语言</h3>
           <ul class="tag-list">
-            <li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>React</li><li>Vue</li>
+            <li>C / C++</li><li>Python</li><li>JavaScript</li>
           </ul>
-          <div class="bar"><span style="width:85%"></span></div>
+          <div class="bar" data-pct="70"><span></span></div>
+          <p class="skill-note">已掌握基础语法与逻辑，持续练习中</p>
         </article>
-        <article class="skill-card">
-          <h3>⚙️ 后端</h3>
+        <article class="skill-card reveal">
+          <div class="skill-icon">🧩</div>
+          <h3>前端开发</h3>
           <ul class="tag-list">
-            <li>Python</li><li>Node.js</li><li>Flask</li><li>MySQL</li><li>RESTful API</li>
+            <li>HTML5</li><li>CSS3</li><li>JavaScript</li>
           </ul>
-          <div class="bar"><span style="width:70%"></span></div>
+          <div class="bar" data-pct="65"><span></span></div>
+          <p class="skill-note">能在无框架环境下手工搭建响应式页面</p>
         </article>
-        <article class="skill-card">
-          <h3>🛠 工具</h3>
+        <article class="skill-card reveal">
+          <div class="skill-icon">🛠️</div>
+          <h3>工具与环境</h3>
           <ul class="tag-list">
-            <li>Git</li><li>GitHub</li><li>Linux</li><li>VS Code</li><li>Figma</li>
+            <li>Git / GitHub</li><li>VS Code</li><li>AI 辅助开发</li><li>Windows</li>
           </ul>
-          <div class="bar"><span style="width:80%"></span></div>
+          <div class="bar" data-pct="75"><span></span></div>
+          <p class="skill-note">熟悉版本管理与 AI 工具提效工作流</p>
         </article>
       </div>
     </div>
@@ -122,67 +157,93 @@
   <!-- ===== 项目 ===== -->
   <section class="section" id="projects">
     <div class="container">
-      <h2 class="section-title"><span>03.</span> 项目经历</h2>
+      <h2 class="section-title reveal"><span class="num">03</span> 项目经历</h2>
+      <p class="section-lead reveal">下面是一些课程作业与个人练习。<em>示例条目待我补充真实内容。</em></p>
       <div class="projects-grid">
-        <article class="project-card">
-          <div class="project-cover" style="--c1:#6366f1;--c2:#8b5cf6">Personal Web</div>
-          <div class="project-body">
-            <h3>个人主页</h3>
-            <p>使用原生 HTML/CSS/JS 搭建的响应式个人网站，部署于 GitHub Pages。</p>
-            <ul class="tag-list small"><li>HTML</li><li>CSS</li><li>JS</li></ul>
-            <div class="project-links">
-              <a href="#" target="_blank" rel="noopener">演示 →</a>
-              <a href="#" target="_blank" rel="noopener">源码 →</a>
-            </div>
+        <article class="project-card reveal">
+          <div class="project-head">
+            <span class="project-badge">课程作业</span>
+            <span class="project-mark">01</span>
+          </div>
+          <h3>个人主页 Personal Web</h3>
+          <p>使用原生 HTML / CSS / JavaScript 搭建的响应式个人网站，背景几何海浪由 Canvas 实时绘制并与鼠标交互，通过 GitHub Pages 部署。</p>
+          <ul class="tag-list small">
+            <li>HTML</li><li>CSS</li><li>JavaScript</li><li>Canvas</li>
+          </ul>
+          <div class="project-links">
+            <a href="https://sweethaohao.github.io/personalweb/" target="_blank" rel="noopener">在线演示 →</a>
+            <a href="https://github.com/sweethaohao/personalweb" target="_blank" rel="noopener">源码 →</a>
           </div>
         </article>
-        <article class="project-card">
-          <div class="project-cover" style="--c1:#0ea5e9;--c2:#22d3ee">Data Viz</div>
-          <div class="project-body">
-            <h3>数据可视化看板</h3>
-            <p>基于 Python + Flask 的可视化平台，对公开数据集进行清洗、分析与图表展示。</p>
-            <ul class="tag-list small"><li>Python</li><li>Flask</li><li>ECharts</li></ul>
-            <div class="project-links">
-              <a href="#" target="_blank" rel="noopener">演示 →</a>
-              <a href="#" target="_blank" rel="noopener">源码 →</a>
-            </div>
+        <article class="project-card reveal">
+          <div class="project-head">
+            <span class="project-badge">课程作业</span>
+            <span class="project-mark">02</span>
+          </div>
+          <h3>课程设计 · 待补充</h3>
+          <p>占位条目。等我完成更多课程设计后，在这里补上项目名称、技术栈与说明。（示例）</p>
+          <ul class="tag-list small">
+            <li>Python</li><li>待补充</li>
+          </ul>
+          <div class="project-links">
+            <a href="#" class="is-disabled">在线演示 →</a>
+            <a href="#" class="is-disabled">源码 →</a>
           </div>
         </article>
-        <article class="project-card">
-          <div class="project-cover" style="--c1:#f43f5e;--c2:#fb7185">Todo App</div>
-          <div class="project-body">
-            <h3>任务管理 App</h3>
-            <p>支持增删改查与本地持久化的待办应用，注重交互与状态管理。</p>
-            <ul class="tag-list small"><li>React</li><li>localStorage</li></ul>
-            <div class="project-links">
-              <a href="#" target="_blank" rel="noopener">演示 →</a>
-              <a href="#" target="_blank" rel="noopener">源码 →</a>
-            </div>
+        <article class="project-card reveal">
+          <div class="project-head">
+            <span class="project-badge">个人练习</span>
+            <span class="project-mark">03</span>
+          </div>
+          <h3>更多项目 · 规划中</h3>
+          <p>占位条目。正在学习 Blender、单片机等方向，后续会把实践成果陆续整理到这里。（示例）</p>
+          <ul class="tag-list small">
+            <li>学习中</li>
+          </ul>
+          <div class="project-links">
+            <a href="#" class="is-disabled">在线演示 →</a>
+            <a href="#" class="is-disabled">源码 →</a>
           </div>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- ===== 联系 ===== -->
-  <section class="section alt" id="contact">
+  <!-- ===== 兴趣 ===== -->
+  <section class="section alt" id="interests">
     <div class="container">
-      <h2 class="section-title"><span>04.</span> 联系我</h2>
+      <h2 class="section-title reveal"><span class="num">04</span> 兴趣爱好</h2>
+      <div class="interests-grid">
+        <div class="interest reveal"><span>🎮</span><h3>游戏</h3><p>放松与竞技，也是了解交互设计的窗口</p></div>
+        <div class="interest reveal"><span>📷</span><h3>摄影</h3><p>用镜头记录生活和光影</p></div>
+        <div class="interest reveal"><span>🎨</span><h3>PS / PR</h3><p>图片与视频创作，想学的东西之一</p></div>
+        <div class="interest reveal"><span>🧊</span><h3>Blender</h3><p>3D 建模与渲染，目标清单上的一位</p></div>
+        <div class="interest reveal"><span>📐</span><h3>CAD</h3><p>工程制图，对硬件的兴趣延伸</p></div>
+        <div class="interest reveal"><span>🔌</span><h3>单片机</h3><p>软硬结合，很想亲手做点东西</p></div>
+      </div>
+      <p class="section-lead center reveal">兴趣很宽泛，方向是「一切跟生产力有关的东西」。<br/>虽然大多还没开始学，但都想试试看。</p>
+    </div>
+  </section>
+
+  <!-- ===== 联系 ===== -->
+  <section class="section" id="contact">
+    <div class="container">
+      <h2 class="section-title reveal"><span class="num">05</span> 联系我</h2>
       <div class="contact-grid">
-        <div class="contact-text">
-          <p>无论是合作、交流还是招聘，欢迎随时联系我。我会尽快回复。</p>
+        <div class="contact-text reveal">
+          <p>不管是交流学习、项目合作，还是单纯想聊聊，都欢迎联系我。</p>
           <ul class="contact-list">
-            <li><span>📧</span><a href="mailto:example@example.com">example@example.com</a></li>
-            <li><span>🐙</span><a href="https://github.com/sweethaohao" target="_blank" rel="noopener">github.com/sweethaohao</a></li>
-            <li><span>💬</span><a href="#">微信 / QQ：待填写</a></li>
+            <li><span class="ci">📧</span><a href="mailto:awslyouxiang@163.com">awslyouxiang@163.com</a></li>
+            <li><span class="ci">🐙</span><a href="https://github.com/sweethaohao" target="_blank" rel="noopener">github.com/sweethaohao</a></li>
+            <li><span class="ci">📍</span><span>中国 · 上海</span></li>
           </ul>
         </div>
-        <form class="contact-form" id="contactForm">
-          <label>姓名<input type="text" name="name" placeholder="你的名字" required></label>
-          <label>邮箱<input type="email" name="email" placeholder="you@example.com" required></label>
+        <form class="contact-form reveal" id="contactForm">
+          <label>姓名<input type="text" name="name" placeholder="你的名字" required /></label>
+          <label>邮箱<input type="email" name="email" placeholder="you@example.com" required /></label>
           <label>留言<textarea name="message" rows="4" placeholder="想对我说点什么…" required></textarea></label>
           <button type="submit" class="btn btn-primary">发送消息</button>
-          <p class="form-tip" id="formTip"></p>
+          <p class="form-tip" id="formTip" role="status" aria-live="polite"></p>
         </form>
       </div>
     </div>
@@ -191,8 +252,12 @@
   <!-- ===== 页脚 ===== -->
   <footer class="footer">
     <div class="container footer-inner">
-      <p>© <span id="year"></span> 郝浩 · Built with ❤️ and pure HTML/CSS/JS</p>
-      <a href="#home" class="back-top">回到顶部 ↑</a>
+      <p>© <span id="year"></span> 倪永昊 Ni Yonghao · 用 HTML / CSS / JavaScript 手工搭建</p>
+      <nav class="footer-links">
+        <a href="https://github.com/sweethaohao/personalweb" target="_blank" rel="noopener">源码</a>
+        <a href="LICENSE" target="_blank" rel="noopener">MIT License</a>
+        <a href="#home">回到顶部 ↑</a>
+      </nav>
     </div>
   </footer>
 
