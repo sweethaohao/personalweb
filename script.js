@@ -175,7 +175,22 @@
   }
 
   /* =======================================================
-   * 3. 打字机
+   * 3. 头像翻牌卡片（图1 常驻 / 点击切换 图2）
+   * ======================================================= */
+  (function flip() {
+    const card = document.getElementById("flipCard");
+    const btn = document.getElementById("flipBtn");
+    if (!card) return;
+    const toggle = () => card.classList.toggle("flipped");
+    card.addEventListener("click", toggle);
+    card.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); }
+    });
+    if (btn) btn.addEventListener("click", (e) => { e.stopPropagation(); toggle(); });
+  })();
+
+  /* =======================================================
+   * 4. 打字机
    * ======================================================= */
   const roles = [
     "上海杉达学院 · 计算机科学与技术",
@@ -199,7 +214,7 @@
   }
 
   /* =======================================================
-   * 4. 滚动入场 + 技能条
+   * 5. 滚动入场 + 技能条
    * ======================================================= */
   const io = new IntersectionObserver(
     (entries) => {
@@ -219,7 +234,7 @@
   document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
 
   /* =======================================================
-   * 5. 联系表单（前端演示）
+   * 6. 联系表单（前端演示）
    * ======================================================= */
   const form = document.getElementById("contactForm");
   const tip = document.getElementById("formTip");
@@ -234,7 +249,7 @@
   }
 
   /* =======================================================
-   * 6. 年份
+   * 7. 年份
    * ======================================================= */
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();

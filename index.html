@@ -70,9 +70,20 @@
         </div>
       </div>
       <div class="hero-photo reveal">
-        <div class="photo-frame">
-          <img src="assets/img/avatar.jpg" alt="倪永昊的照片" loading="eager" />
+        <div class="flip-card" id="flipCard" role="button" tabindex="0"
+             aria-label="点击翻转照片" title="点击翻转">
+          <div class="flip-inner">
+            <div class="flip-face flip-front">
+              <img src="assets/img/profile-front.jpg" alt="倪永昊的侧面照" loading="eager" />
+            </div>
+            <div class="flip-face flip-back">
+              <img src="assets/img/profile-back.jpg" alt="倪永昊的正面照" loading="lazy" />
+            </div>
+          </div>
         </div>
+        <button class="flip-btn" id="flipBtn" type="button" aria-label="切换照片">
+          <span class="flip-ico">⟳</span> 换一张
+        </button>
         <div class="photo-tag">
           <strong>Ni Yonghao</strong>
           <span>CS Undergrad</span>
@@ -112,7 +123,7 @@
           </div>
         </div>
         <div class="about-photo reveal">
-          <img src="assets/img/about.jpg" alt="生活照" loading="lazy" />
+          <img src="assets/img/about.jpg" alt="倪永昊的生活照" loading="lazy" />
         </div>
       </div>
     </div>
