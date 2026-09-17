@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="郝浩的个人主页 — 计算机科学与技术 / 课程作业 Personal Web" />
+  <title>郝浩 | Personal Website</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <!-- ===== 导航栏 ===== -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="#home" class="logo">Hao<span>.dev</span></a>
+      <nav class="nav-links" id="navLinks">
+        <a href="#home" class="active">首页</a>
+        <a href="#about">关于</a>
+        <a href="#skills">技能</a>
+        <a href="#projects">项目</a>
+        <a href="#contact">联系</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="菜单">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== 首页/英雄区 ===== -->
+  <section class="hero" id="home">
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <p class="hero-hello">👋 你好，我是</p>
+        <h1 class="hero-name">郝浩 <span class="gradient-text">Hao Hao</span></h1>
+        <p class="hero-role"><span id="typed"></span><span class="cursor">|</span></p>
+        <p class="hero-desc">
+          热爱编程与算法，专注于 Web 开发与数据处理。
+          这是我的个人主页 —— 用于展示我的技能、项目与学习历程。
+        </p>
+        <div class="hero-btns">
+          <a href="#projects" class="btn btn-primary">查看项目</a>
+          <a href="#contact" class="btn btn-ghost">联系我</a>
+        </div>
+        <div class="hero-socials">
+          <a href="https://github.com/sweethaohao" target="_blank" rel="noopener" title="GitHub">GitHub</a>
+          <a href="mailto:example@example.com" title="Email">Email</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="avatar">郝</div>
+        <h3>郝浩</h3>
+        <p class="muted">计算机科学与技术</p>
+        <ul class="hero-stats">
+          <li><strong>3+</strong><span>项目</span></li>
+          <li><strong>5+</strong><span>技术栈</span></li>
+          <li><strong>∞</strong><span>好奇心</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="scroll-hint">↓ 向下滚动</div>
+  </section>
+
+  <!-- ===== 关于 ===== -->
+  <section class="section" id="about">
+    <div class="container">
+      <h2 class="section-title"><span>01.</span> 关于我</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            我是一名计算机相关专业的学生，热爱用代码解决问题。从大一开始接触编程，
+            如今已熟悉前端开发、数据结构与算法、Python 数据处理等方向。
+          </p>
+          <p>
+            我相信最好的学习方式是<strong>动手做项目</strong>。除了课程作业，我还在课余时间
+            参与开源、搭建个人项目，通过实践不断打磨自己。
+          </p>
+          <p>这个网站本身就是一个练习 —— 用纯 HTML / CSS / JavaScript 手工搭建，无任何框架。</p>
+        </div>
+        <div class="about-facts">
+          <div class="fact"><span>📍</span><div><strong>所在地</strong><p>中国 · 上海</p></div></div>
+          <div class="fact"><span>🎓</span><div><strong>专业</strong><p>计算机科学与技术</p></div></div>
+          <div class="fact"><span>💡</span><div><strong>方向</strong><p>Web 开发 / 数据科学</p></div></div>
+          <div class="fact"><span>🌱</span><div><strong>正在学</strong><p>算法 · 云原生</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 技能 ===== -->
+  <section class="section alt" id="skills">
+    <div class="container">
+      <h2 class="section-title"><span>02.</span> 技能栈</h2>
+      <div class="skills-grid">
+        <article class="skill-card">
+          <h3>🌐 前端</h3>
+          <ul class="tag-list">
+            <li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>React</li><li>Vue</li>
+          </ul>
+          <div class="bar"><span style="width:85%"></span></div>
+        </article>
+        <article class="skill-card">
+          <h3>⚙️ 后端</h3>
+          <ul class="tag-list">
+            <li>Python</li><li>Node.js</li><li>Flask</li><li>MySQL</li><li>RESTful API</li>
+          </ul>
+          <div class="bar"><span style="width:70%"></span></div>
+        </article>
+        <article class="skill-card">
+          <h3>🛠 工具</h3>
+          <ul class="tag-list">
+            <li>Git</li><li>GitHub</li><li>Linux</li><li>VS Code</li><li>Figma</li>
+          </ul>
+          <div class="bar"><span style="width:80%"></span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 项目 ===== -->
+  <section class="section" id="projects">
+    <div class="container">
+      <h2 class="section-title"><span>03.</span> 项目经历</h2>
+      <div class="projects-grid">
+        <article class="project-card">
+          <div class="project-cover" style="--c1:#6366f1;--c2:#8b5cf6">Personal Web</div>
+          <div class="project-body">
+            <h3>个人主页</h3>
+            <p>使用原生 HTML/CSS/JS 搭建的响应式个人网站，部署于 GitHub Pages。</p>
+            <ul class="tag-list small"><li>HTML</li><li>CSS</li><li>JS</li></ul>
+            <div class="project-links">
+              <a href="#" target="_blank" rel="noopener">演示 →</a>
+              <a href="#" target="_blank" rel="noopener">源码 →</a>
+            </div>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-cover" style="--c1:#0ea5e9;--c2:#22d3ee">Data Viz</div>
+          <div class="project-body">
+            <h3>数据可视化看板</h3>
+            <p>基于 Python + Flask 的可视化平台，对公开数据集进行清洗、分析与图表展示。</p>
+            <ul class="tag-list small"><li>Python</li><li>Flask</li><li>ECharts</li></ul>
+            <div class="project-links">
+              <a href="#" target="_blank" rel="noopener">演示 →</a>
+              <a href="#" target="_blank" rel="noopener">源码 →</a>
+            </div>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-cover" style="--c1:#f43f5e;--c2:#fb7185">Todo App</div>
+          <div class="project-body">
+            <h3>任务管理 App</h3>
+            <p>支持增删改查与本地持久化的待办应用，注重交互与状态管理。</p>
+            <ul class="tag-list small"><li>React</li><li>localStorage</li></ul>
+            <div class="project-links">
+              <a href="#" target="_blank" rel="noopener">演示 →</a>
+              <a href="#" target="_blank" rel="noopener">源码 →</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 联系 ===== -->
+  <section class="section alt" id="contact">
+    <div class="container">
+      <h2 class="section-title"><span>04.</span> 联系我</h2>
+      <div class="contact-grid">
+        <div class="contact-text">
+          <p>无论是合作、交流还是招聘，欢迎随时联系我。我会尽快回复。</p>
+          <ul class="contact-list">
+            <li><span>📧</span><a href="mailto:example@example.com">example@example.com</a></li>
+            <li><span>🐙</span><a href="https://github.com/sweethaohao" target="_blank" rel="noopener">github.com/sweethaohao</a></li>
+            <li><span>💬</span><a href="#">微信 / QQ：待填写</a></li>
+          </ul>
+        </div>
+        <form class="contact-form" id="contactForm">
+          <label>姓名<input type="text" name="name" placeholder="你的名字" required></label>
+          <label>邮箱<input type="email" name="email" placeholder="you@example.com" required></label>
+          <label>留言<textarea name="message" rows="4" placeholder="想对我说点什么…" required></textarea></label>
+          <button type="submit" class="btn btn-primary">发送消息</button>
+          <p class="form-tip" id="formTip"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 页脚 ===== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> 郝浩 · Built with ❤️ and pure HTML/CSS/JS</p>
+      <a href="#home" class="back-top">回到顶部 ↑</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
