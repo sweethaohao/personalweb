@@ -134,7 +134,7 @@
     <div class="container">
       <h2 class="section-title reveal"><span class="num">02</span> 技能栈</h2>
       <div class="skills-grid">
-        <article class="skill-card reveal">
+        <article class="skill-card slide-card">
           <div class="skill-icon">⌨️</div>
           <h3>编程语言</h3>
           <ul class="tag-list">
@@ -143,7 +143,7 @@
           <div class="bar" data-pct="70"><span></span></div>
           <p class="skill-note">已掌握基础语法与逻辑，持续练习中</p>
         </article>
-        <article class="skill-card reveal">
+        <article class="skill-card slide-card">
           <div class="skill-icon">🧩</div>
           <h3>前端开发</h3>
           <ul class="tag-list">
@@ -152,7 +152,7 @@
           <div class="bar" data-pct="65"><span></span></div>
           <p class="skill-note">能在无框架环境下手工搭建响应式页面</p>
         </article>
-        <article class="skill-card reveal">
+        <article class="skill-card slide-card">
           <div class="skill-icon">🛠️</div>
           <h3>工具与环境</h3>
           <ul class="tag-list">
@@ -171,7 +171,7 @@
       <h2 class="section-title reveal"><span class="num">03</span> 项目经历</h2>
       <p class="section-lead reveal">下面是一些课程作业与个人练习。<em>示例条目待我补充真实内容。</em></p>
       <div class="projects-grid">
-        <article class="project-card reveal">
+        <article class="project-card slide-card">
           <div class="project-head">
             <span class="project-badge">课程作业</span>
             <span class="project-mark">01</span>
@@ -186,7 +186,7 @@
             <a href="https://github.com/sweethaohao/personalweb" target="_blank" rel="noopener">源码 →</a>
           </div>
         </article>
-        <article class="project-card reveal">
+        <article class="project-card slide-card">
           <div class="project-head">
             <span class="project-badge">课程作业</span>
             <span class="project-mark">02</span>
@@ -201,7 +201,7 @@
             <a href="#" class="is-disabled">源码 →</a>
           </div>
         </article>
-        <article class="project-card reveal">
+        <article class="project-card slide-card">
           <div class="project-head">
             <span class="project-badge">个人练习</span>
             <span class="project-mark">03</span>
@@ -224,15 +224,37 @@
   <section class="section alt" id="interests">
     <div class="container">
       <h2 class="section-title reveal"><span class="num">04</span> 兴趣爱好</h2>
-      <div class="interests-grid">
-        <div class="interest reveal"><span>🎮</span><h3>游戏</h3><p>放松与竞技，也是了解交互设计的窗口</p></div>
-        <div class="interest reveal"><span>📷</span><h3>摄影</h3><p>用镜头记录生活和光影</p></div>
-        <div class="interest reveal"><span>🎨</span><h3>PS / PR</h3><p>图片与视频创作，想学的东西之一</p></div>
-        <div class="interest reveal"><span>🧊</span><h3>Blender</h3><p>3D 建模与渲染，目标清单上的一位</p></div>
-        <div class="interest reveal"><span>📐</span><h3>CAD</h3><p>工程制图，对硬件的兴趣延伸</p></div>
-        <div class="interest reveal"><span>🔌</span><h3>单片机</h3><p>软硬结合，很想亲手做点东西</p></div>
+      <p class="section-lead reveal">兴趣很宽泛，方向是「一切跟生产力有关的东西」。<em>把鼠标移到卡片上看看。</em></p>
+
+      <div class="cloud-stage" id="cloudStage">
+        <div class="cloud-backdrop" id="cloudBackdrop"></div>
+        <div class="cloud" id="cloud">
+          <div class="cloud-item" data-key="game" style="--x:20%;--y:26%;--s:1.05;--fx:7s;--fy:6.2s;--fdx:9px;--fdy:-7px">
+            <span class="ci-inner"><span class="ci-emoji">🎮</span><span class="ci-title">游戏</span>
+            <span class="ci-detail">放松与竞技，也是了解交互设计与玩家心理的窗口。喜欢在游戏里琢磨「为什么好玩」。</span></span>
+          </div>
+          <div class="cloud-item" data-key="photo" style="--x:46%;--y:15%;--s:1.25;--fx:6.4s;--fy:7.4s;--fdx:-8px;--fdy:8px">
+            <span class="ci-inner"><span class="ci-emoji">📷</span><span class="ci-title">摄影</span>
+            <span class="ci-detail">用镜头记录生活和光影，喜欢观察构图、色彩与瞬间。手机随身，看到好东西就想拍下来。</span></span>
+          </div>
+          <div class="cloud-item" data-key="ps" style="--x:71%;--y:28%;--s:1.1;--fx:7.6s;--fy:6.8s;--fdx:7px;--fdy:9px">
+            <span class="ci-inner"><span class="ci-emoji">🎨</span><span class="ci-title">PS / PR</span>
+            <span class="ci-detail">图片与视频创作，一直想学的东西。目标是能自己完成修图、剪辑和简单的视觉设计。</span></span>
+          </div>
+          <div class="cloud-item" data-key="blender" style="--x:23%;--y:60%;--s:1.18;--fx:6.8s;--fy:7.8s;--fdx:-9px;--fdy:6px">
+            <span class="ci-inner"><span class="ci-emoji">🧊</span><span class="ci-title">Blender</span>
+            <span class="ci-detail">3D 建模与渲染，目标清单上的一位。觉得能把脑海里的东西做成三维场景特别酷。</span></span>
+          </div>
+          <div class="cloud-item" data-key="cad" style="--x:49%;--y:68%;--s:0.95;--fx:7.2s;--fy:6.4s;--fdx:8px;--fdy:-8px">
+            <span class="ci-inner"><span class="ci-emoji">📐</span><span class="ci-title">CAD</span>
+            <span class="ci-detail">工程制图，对硬件的兴趣延伸。想学会画出能真正拿去加工的图纸。</span></span>
+          </div>
+          <div class="cloud-item" data-key="mcu" style="--x:71%;--y:62%;--s:1.12;--fx:6.6s;--fy:7.2s;--fdx:-7px;--fdy:9px">
+            <span class="ci-inner"><span class="ci-emoji">🔌</span><span class="ci-title">单片机</span>
+            <span class="ci-detail">软硬结合，很想亲手做点东西。从点灯开始，梦想做一个小硬件项目。</span></span>
+          </div>
+        </div>
       </div>
-      <p class="section-lead center reveal">兴趣很宽泛，方向是「一切跟生产力有关的东西」。<br/>虽然大多还没开始学，但都想试试看。</p>
     </div>
   </section>
 

@@ -214,27 +214,207 @@
   }
 
   /* =======================================================
-   * 5. 滚动入场 + 技能条
+   * 5. 通用滚动入场（标题 / 首屏等）
    * ======================================================= */
-  const io = new IntersectionObserver(
+  const revealIO = new IntersectionObserver(
     (entries) => {
       entries.forEach((e) => {
         if (!e.isIntersecting) return;
         e.target.classList.add("visible");
-        e.target.querySelectorAll(".bar").forEach((bar) => {
-          const pct = bar.dataset.pct || "70";
-          const span = bar.querySelector("span");
-          if (span) span.style.width = pct + "%";
-        });
-        io.unobserve(e.target);
+        revealIO.unobserve(e.target);
       });
     },
     { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
   );
-  document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+  document.querySelectorAll(".reveal").forEach((el) => revealIO.observe(el));
 
   /* =======================================================
-   * 6. 联系表单（前端演示）
+   * 6. 卡片滑动入场（技能 / 项目）
+   *    向下滚动：从右滑入；滚过头：向左滑出
+   * ======================================================= */
+  (function slideCards() {
+    const cards = Array.from(document.querySelectorAll(".slide-card"));
+    if (!cards.length) return;
+
+    // 单一滚动驱动：根据卡片在视口中的位置决定状态，避免多机制互相打架
+    // - 从右侧滑入（进场）
+    // - 滑出视口上方时向左滑出
+    let ticking = false;
+
+    function setIn(c) {
+      if (!c.classList.contains("in")) {
+        c.classList.remove("out-left");
+        c.classList.add("in");
+      }
+    }
+    function setOut(c) {
+      if (!c.classList.contains("out-left")) {
+        c.classList.remove("in");
+        c.classList.add("out-left");
+      }
+    }
+    function setHidden(c) {
+      // 在视口下方（还没进场）：无动画状态，等待首次滑入
+      c.classList.remove("in", "out-left");
+    }
+
+    function update() {
+      const vh = window.innerHeight;
+      cards.forEach((c) => {
+        const r = c.getBoundingClientRect();
+        const center = r.top + r.height / 2;
+        // 技能条填充
+        if (center > 0 && center < vh) {
+          c.querySelectorAll(".bar").forEach((bar) => {
+            const span = bar.querySelector("span");
+            if (span) span.style.width = (bar.dataset.pct || "70") + "%";
+          });
+        }
+        if (center < vh * 0.15) {
+          // 已滚到视口上方 → 向左滑出
+          setOut(c);
+        } else if (center < vh * 0.85) {
+          // 在视口中下部 → 进场（从右滑入）
+          setIn(c);
+        } else {
+          // 在视口下方 → 归位待入场
+          setHidden(c);
+        }
+      });
+      ticking = false;
+    }
+
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    // 首次：等布局完成再判定（避免直接落在隐藏态）
+    requestAnimationFrame(update);
+    window.addEventListener("load", onScroll);
+  })();
+  /* =======================================================
+   * 7. 兴趣爱好云图：漂浮晃动 + 鼠标吸附 + 悬停放大展开
+   * ======================================================= */
+  (function cloud() {
+    const stage = document.getElementById("cloudStage");
+    const cloud = document.getElementById("cloud");
+    if (!stage || !cloud) return;
+    const items = Array.from(cloud.querySelectorAll(".cloud-item"));
+    const isMobile = () => window.matchMedia("(max-width: 780px)").matches;
+
+    items.forEach((el) => {
+      el._s  = parseFloat(el.style.getPropertyValue("--s")) || 1;
+      el._ox = 0; el._oy = 0;
+      el.style.setProperty("--ox", "0px");
+      el.style.setProperty("--oy", "0px");
+    });
+
+    const R = 210;       // 吸附半径 (px)
+    const PULL = 0.26;   // 吸附强度
+    let mx = null, my = null;
+
+    // 展开时：把超大后的卡片拉回云图框内，保证完整可见
+    const PAD = 14;   // 与边框的内边距
+    function clampActive(el) {
+      const sRect = stage.getBoundingClientRect();
+      const r = el.getBoundingClientRect();          // 当前（已含 --ox/--oy 与放大）
+      let dx = 0, dy = 0;
+      // 只按「当前渲染框」与舞台边界比较，超出就往回推
+      const overflowL = sRect.left + PAD - r.left;
+      const overflowR = r.right - (sRect.right - PAD);
+      const overflowT = sRect.top + PAD - r.top;
+      const overflowB = r.bottom - (sRect.bottom - PAD);
+      if (overflowL > 0) dx += overflowL;
+      if (overflowR > 0) dx -= overflowR;
+      if (overflowT > 0) dy += overflowT;
+      if (overflowB > 0) dy -= overflowB;
+      return { dx, dy };
+    }
+
+    function apply() {
+      if (!isMobile()) {
+        const sRect = stage.getBoundingClientRect();
+        items.forEach((el) => {
+          if (el.classList.contains("active")) {
+            // 平滑地把越界部分推回框内
+            const c = clampActive(el);
+            el._ox += (c.dx - el._ox) * 0.2;
+            el._oy += (c.dy - el._oy) * 0.2;
+            el.style.setProperty("--ox", el._ox.toFixed(2) + "px");
+            el.style.setProperty("--oy", el._oy.toFixed(2) + "px");
+            return;
+          }
+          let tx = 0, ty = 0;
+          if (mx !== null) {
+            const r = el.getBoundingClientRect();
+            const baseCx = r.left + r.width / 2 - el._ox;
+            const baseCy = r.top + r.height / 2 - el._oy;
+            const mAbsX = sRect.left + mx;
+            const mAbsY = sRect.top + my;
+            const dx = mAbsX - baseCx;
+            const dy = mAbsY - baseCy;
+            const d = Math.hypot(dx, dy);
+            if (d < R) {
+              const f = (1 - d / R) * PULL;
+              tx = dx * f;
+              ty = dy * f;
+            }
+          }
+          el._ox += (tx - el._ox) * 0.14;
+          el._oy += (ty - el._oy) * 0.14;
+          el.style.setProperty("--ox", el._ox.toFixed(2) + "px");
+          el.style.setProperty("--oy", el._oy.toFixed(2) + "px");
+        });
+      }
+      requestAnimationFrame(apply);
+    }
+
+    stage.addEventListener("mousemove", (e) => {
+      const rect = stage.getBoundingClientRect();
+      mx = e.clientX - rect.left;
+      my = e.clientY - rect.top;
+    });
+
+    function activate(el) {
+      items.forEach((o) => {
+        if (o === el) {
+          o.classList.add("active");
+          o.classList.remove("dimmed");
+        } else {
+          o.classList.add("dimmed");
+          o.classList.remove("active");
+        }
+      });
+      stage.classList.add("hovered");
+    }
+    function deactivate() {
+      items.forEach((el) => el.classList.remove("active", "dimmed"));
+      stage.classList.remove("hovered");
+    }
+
+    // 悬停在某张卡片上 → 展开；离开该卡片 → 恢复
+    items.forEach((el) => {
+      el.addEventListener("mouseenter", () => activate(el));
+      el.addEventListener("mouseleave", () => {
+        // 仅当离开的正是当前展开的那张时收起
+        if (el.classList.contains("active")) deactivate();
+      });
+    });
+    // 离开整个舞台时兜底清理
+    stage.addEventListener("mouseleave", () => {
+      mx = my = null;
+      deactivate();
+    });
+
+    apply();
+  })();
+
+  /* =======================================================
+   * 8. 联系表单（前端演示）
    * ======================================================= */
   const form = document.getElementById("contactForm");
   const tip = document.getElementById("formTip");
@@ -249,7 +429,7 @@
   }
 
   /* =======================================================
-   * 7. 年份
+   * 9. 年份
    * ======================================================= */
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
